@@ -1,0 +1,45 @@
+.sidebar-workspaces {
+  background-color: #261C25;
+}
+
+.sidebar-channels {
+  padding: 16px;
+  background-color: #4B3949;
+  color: white;
+}
+
+.sidebar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-top: 16px;
+}
+
+.channel {
+  color: #9B919A;
+}
+
+.channel h4,
+.channel i {
+  display: inline;
+  padding-right: 8px;
+  font-size: 14px;
+}
+
+.channel:hover {
+  cursor: pointer;
+  color: white;
+}
+
+#channel--active {
+  color: white;
+}
+
+.online i,
+.offline i {
+  font-size: 8px;
+}
+
+.online i {
+  color: #1FE5BD;
+}

@@ -1,0 +1,19 @@
+.workspace {
+  display: block;
+  border-radius: 4px;
+  margin: 10px auto;
+  padding: 6px 0;
+  width: 40px;
+  color: #514951;
+  text-align: center;
+}
+
+#workspace--active {
+  background-color: #514951;
+  color: white;
+}
+
+.workspace:hover {
+  color: white;
+  cursor: pointer;
+}

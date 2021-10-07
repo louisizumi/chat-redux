@@ -1,17 +1,24 @@
+export const SELECT_CHANNEL = 'SELECT_CHANNEL';
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const CREATE_MESSAGE = 'CREATE_MESSAGE';
 
 const url = "https://wagon-chat.herokuapp.com/";
 
-const fetchMessages = (channel) => {
-  fetch(`${url}${channel}/messages`)
-    .then(response => response.json())
-    .then((data) => {
-      return {
-        type: GET_MESSAGES,
-        payload: data.messages
-      };
-    });
+const selectChannel = (channel) => {
+  return {
+    type: SELECT_CHANNEL,
+    payload: channel
+  };
+};
+
+const getMessages = (channel) => {
+  const promise = fetch(`${url}${channel}/messages`)
+    .then(r => r.json());
+
+  return {
+    type: GET_MESSAGES,
+    payload: promise
+  };
 };
 
 const createMessage = (channel, author, content) => {
@@ -34,4 +41,4 @@ const createMessage = (channel, author, content) => {
   };
 };
 
-export { fetchMessages, createMessage };
+export { selectChannel, getMessages, createMessage };
