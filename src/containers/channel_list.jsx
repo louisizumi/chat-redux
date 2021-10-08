@@ -1,26 +1,19 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectChannel, getMessages } from '../actions';
+import { Link } from 'react-router-dom';
+
+import { getMessages } from '../actions';
 
 class ChannelList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedChannel !== this.props.selectedChannel) {
-      this.props.getMessages(nextProps.selectedChannel);
+    if (nextProps.channelParam !== this.props.channelParam) {
+      this.props.getMessages(nextProps.channelParam);
     }
   }
 
-  handleClick(channel) {
-    this.props.selectChannel(channel);
-  }
-
   render() {
-    const { channels, selectedChannel } = this.props;
+    const { channels, channelParam } = this.props;
     return (
       <div className="sidebar-channels">
         <h1>Le Wagon</h1>
@@ -30,17 +23,21 @@ class ChannelList extends React.Component {
           </div>
           {
             channels.map((channel) => {
-              if (channel === selectedChannel) {
+              if (channel === channelParam) {
                 return (
-                  <div className="channel" id="channel--active" key={channel} onClick={() => this.handleClick(channel)}>
-                    <h4>#{channel}</h4>
-                  </div>
+                  <Link to={`/${channel}`}>
+                    <div className="channel" id="channel--active" key={channel} >
+                      <h4>#{channel}</h4>
+                    </div>
+                  </Link>
                 );
               }
               return (
-                <div className="channel" key={channel} onClick={() => this.handleClick(channel)}>
-                  <h4>#{channel}</h4>
-                </div>
+                <Link to={`/${channel}`}>
+                  <div className="channel" key={channel} >
+                    <h4>#{channel}</h4>
+                  </div>
+                </Link>
               );
             })
           }
@@ -52,15 +49,14 @@ class ChannelList extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { selectChannel, getMessages },
+    { getMessages },
     dispatch
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    channels: state.channels,
-    selectedChannel: state.selectedChannel
+    channels: state.channels
   };
 };
 

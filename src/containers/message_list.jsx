@@ -24,7 +24,7 @@ class MessageList extends React.Component {
   }
 
   getMessages = () => {
-    this.props.getMessages(this.props.selectedChannel);
+    this.props.getMessages(this.props.channelParam);
   }
 
   render() {
@@ -32,7 +32,7 @@ class MessageList extends React.Component {
     return (
       <div className="chat">
         <div className="chat__header">
-          <h1><i className="fab fa-slack-hash" />{this.props.selectedChannel}</h1>
+          <h1><i className="fab fa-slack-hash" />{this.props.channelParam}</h1>
         </div>
         <div className="chat__messages" ref={(list) => { this.list = list; }}>
           {
@@ -41,7 +41,7 @@ class MessageList extends React.Component {
             })
           }
         </div>
-        <MessageForm />
+        <MessageForm channelParam={this.props.channelParam} />
       </div>
     );
   }
@@ -56,8 +56,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    messages: state.messages,
-    selectedChannel: state.selectedChannel
+    messages: state.messages
   };
 };
 
