@@ -1,4 +1,4 @@
-### Wagon Cities
+### Chat Redux
 
 The goal of this challenge was to create a React clone of the Slack messaging app.
 The app uses Redux to store the app state.
